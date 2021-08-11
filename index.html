@@ -148,6 +148,101 @@ var _hmt = _hmt || [];
     
     
     <article
+  id="post-413-等差数列划分"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/08/11/413-%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97%E5%88%92%E5%88%86/"
+    >413.等差数列划分</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/11/413-%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97%E5%88%92%E5%88%86/" class="article-date">
+  <time datetime="2021-08-11T08:01:33.000Z" itemprop="datePublished">2021-08-11</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>如果一个数列 <strong>至少有三个元素</strong> ，并且任意两个相邻元素之差相同，则称该数列为等差数列。</p>
+<ul>
+<li>例如，<code>[1,3,5,7,9]</code>、<code>[7,7,7,7]</code> 和 <code>[3,-1,-5,-9]</code> 都是等差数列。</li>
+</ul>
+<p>给你一个整数数组 <code>nums</code> ，返回数组 <code>nums</code> 中所有为等差数组的 <strong>子数组</strong> 个数。</p>
+<p><strong>子数组</strong> 是数组中的一个连续序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [1,2,3,4]</span><br><span class="line">输出：3</span><br><span class="line">解释：nums 中有三个子等差数组：[1, 2, 3]、[2, 3, 4] 和 [1,2,3,4] 自身。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [1]</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 5000</code></li>
+<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>
+</ul>
+<h1 id="思路与代码"><a href="#思路与代码" class="headerlink" title="思路与代码"></a>思路与代码</h1><h2 id="方法一：双指针法"><a href="#方法一：双指针法" class="headerlink" title="方法一：双指针法"></a>方法一：双指针法</h2><p>有几个关键点我们必须要清晰，等差数列，子数组。</p>
+<ul>
+<li>等差数列是指从第二项起，每一项与它的前一项的差等于<strong>同一个常数</strong>的一种数列</li>
+<li>子数组是数组中的一个连续序列，连续，长度至少为3</li>
+<li>一个子数组如果分为前后两部分，前面不是等差数列，那么后面部分就不用判断了</li>
+</ul>
+<p>因此，对于每个起始位置，我们只需要向后进行一遍扫描，不断累加，直到不再构成等差数列为止，此时，已经没有必要再向后扫描了。</p>
+<img src="https://xinqianpingtaib2btest.oss-cn-shenzhen.aliyuncs.com/xinqianpingtaib2btest/blogimg/2020/20210811223521.png" style="zoom:67%;" />
+
+
+
+<p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">numberOfArithmeticSlices</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> len = nums.size();</span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">2</span>; i++) &#123;</span><br><span class="line">	<span class="keyword">int</span> d = nums[i + <span class="number">1</span>] - nums[i];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; len - <span class="number">1</span>; j++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[j + <span class="number">1</span>] - nums[j] == d)</span><br><span class="line">			res++; </span><br><span class="line">              <span class="keyword">else</span> </span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p> 时间复杂度：$O(N^{2})$</p>
+<p>空间复杂度：$O(1)$</p>
+<h2 id="方法二：双指针法优化"><a href="#方法二：双指针法优化" class="headerlink" title="方法二：双指针法优化"></a>方法二：双指针法优化</h2><p>很明显，上面的双指针法，我们已经知道，以<code>4</code>为开头的<code>[4,6,8,10]</code>是等差子数组，再计算以<code>6</code>为开头的<code>[6,8,10]</code>是否为等差数组，重复计算。那我们如何知道长度为<code>L</code>的等差数列对结果的贡献呢?</p>
+<p>我们不妨枚举一下。</p>
+<p><img src="https://xinqianpingtaib2btest.oss-cn-shenzhen.aliyuncs.com/xinqianpingtaib2btest/blogimg/2020/20210811223753.png"></p>
+<ul>
+<li>长度为 3 的连续的等差数列，有 4 个</li>
+<li>长度为 4 的连续的等差数列，有 3 个</li>
+<li>长度为 5 的连续的等差数列，有 2 个</li>
+<li>长度为 6 的连续的等差数列，有 1 个</li>
+</ul>
+<p>所以，长度为<code>L</code>的等差数列对结果的贡献为，<br>$$<br>(L-2)+(L-1)+…+2+1=\frac{\left(L-2+1\right)\left(L-2\right)}{2}=\frac{\left(L-1\right)\left(L-2\right)}{2}<br>$$<br>代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numberOfArithmeticSlices</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> len = nums.size();</span><br><span class="line">		<span class="keyword">if</span> (len &lt; <span class="number">3</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 初始化</span></span><br><span class="line">		<span class="keyword">int</span> preDiff = nums[<span class="number">1</span>] - nums[<span class="number">0</span>];</span><br><span class="line">		<span class="comment">// 当前得到的等差数列的长度，有「差」必有两个元素，因此初始化的时候 L = 2</span></span><br><span class="line">		<span class="keyword">int</span> L = <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">// 从下标 2 开始比较「当前的差」与「上一轮的差」是否相等</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; len; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> diff = nums[i] - nums[i - <span class="number">1</span>];</span><br><span class="line">			<span class="keyword">if</span> (diff == preDiff) &#123;</span><br><span class="line">				L++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="comment">// 加入结果，然后重置 L 和 preDiff</span></span><br><span class="line">				res += (L - <span class="number">1</span>) * (L - <span class="number">2</span>) / <span class="number">2</span>;</span><br><span class="line">				L = <span class="number">2</span>;</span><br><span class="line">				preDiff = diff;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 最后还要再计算一下结果</span></span><br><span class="line">		res += (L - <span class="number">1</span>) * (L - <span class="number">2</span>) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cpp/" rel="tag">cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-968-监控二叉树"
   class="article article-type-post"
   itemscope
@@ -612,7 +707,7 @@ var _hmt = _hmt || [];
     <ul>
       <li>
         Copyrights &copy;
-        2018-2020
+        2018-2021
         <i class="ri-heart-fill heart_icon"></i> WangWangZhou
       </li>
     </ul>
