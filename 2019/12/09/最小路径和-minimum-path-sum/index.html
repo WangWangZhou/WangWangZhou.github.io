@@ -202,6 +202,13 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 09, 2019</span>
       
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2019/12/09/%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C-minimum-path-sum/" class="leancloud-counter" data-flag-title="最小路径和(minimum-path-sum)"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2019/12/09/%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C-minimum-path-sum/" class="leancloud-like" data-flag-title="最小路径和(minimum-path-sum)"></span>
+        </span>
+      
       <span class="post-info-item"><i class="iconfont iconfont-size"></i>3055</span>
     </div>
   </div>
@@ -214,34 +221,34 @@
 <p>说明：每次只能向下或者向右移动一步。</p>
 <p><strong>示例:</strong></p>
 <p><strong>输入:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [1,3,1],</span><br><span class="line">  [1,5,1],</span><br><span class="line">  [4,2,1]</span><br><span class="line">]</span><br><span class="line">输出:  7</span><br><span class="line">解释:  因为路径 1→3→1→1→1 的总和最小。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">[<br>  [1,3,1],<br>  [1,5,1],<br>  [4,2,1]<br>]<br>输出:  7<br>解释:  因为路径 1→3→1→1→1 的总和最小。<br></code></pre></td></tr></table></figure>
 <h2 id="思路">思路</h2>
 <h2 id="思路">思路</h2>
 <ol>
 <li><strong>状态定义</strong>：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设dp[i][j]为走到当前位置的最小路径和</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">设dp[i][j]为走到当前位置的最小路径和<br></code></pre></td></tr></table></figure>
 <ol>
 <li><strong>递推公式</strong>：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">只能向下或向右走，意味着当前格子只能由上边或者左边走过来</span><br><span class="line">dp[i][j] = Min(dp[i-1][j],dp[i][j-1]) + grid[i][j]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">只能向下或向右走，意味着当前格子只能由上边或者左边走过来<br>dp[i][j] = Min(dp[i-1][j],dp[i][j-1]) + grid[i][j]<br></code></pre></td></tr></table></figure>
 <ol>
 <li><strong>初始化</strong></li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">第一行第n列和第一列第n行为均原数组值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">第一行第n列和第一列第n行为均原数组值<br></code></pre></td></tr></table></figure>
 <ol>
 <li><strong>边界条件</strong></li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">格子有边界，因此当i==0 或j==0时，i-1和j-1会越界</span><br><span class="line">i = 0，j != 0时,dp[i][j] = dp[i][j-1]+grid[i][j]</span><br><span class="line">i !=0，j == 0时,dp[i][j] = dp[i-1][j]+grid[i][j]</span><br><span class="line">i !=0 &amp;&amp; j != 0时,dp[i][j] = Min(dp[i-1][j],dp[i][j-1])+grid[i][j]</span><br><span class="line">i == 0 &amp;&amp; j == 0时,dp[i][j]=grid[i][j]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">格子有边界，因此当i==0 或j==0时，i-1和j-1会越界<br>i = 0，j != 0时,dp[i][j] = dp[i][j-1]+grid[i][j]<br>i !=0，j == 0时,dp[i][j] = dp[i-1][j]+grid[i][j]<br>i !=0 &amp;&amp; j != 0时,dp[i][j] = Min(dp[i-1][j],dp[i][j-1])+grid[i][j]<br>i == 0 &amp;&amp; j == 0时,dp[i][j]=grid[i][j]<br></code></pre></td></tr></table></figure>
 <ol>
 <li><strong>返回值</strong></li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp最后一个元素值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">dp最后一个元素值<br></code></pre></td></tr></table></figure>
 <h2 id="代码">代码</h2>
 <p>cpp代码</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minPathSum</span><span class="params">(std::vector&lt;std::vector&lt;<span class="type">int</span>&gt; &gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span> (grid.<span class="built_in">size</span>() == <span class="number">0</span>)&#123;</span><br><span class="line">	    	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="type">int</span> row = grid.<span class="built_in">size</span>();</span><br><span class="line">    	<span class="type">int</span> column = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">    	std::vector&lt;std::vector&lt;<span class="type">int</span>&gt; &gt; </span><br><span class="line">						<span class="built_in">dp</span>(row, std::<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(column, <span class="number">0</span>));</span><br><span class="line">    	</span><br><span class="line">	    dp[<span class="number">0</span>][<span class="number">0</span>] = grid[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">	    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; column; i++)&#123;</span><br><span class="line">    		dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i<span class="number">-1</span>] + grid[<span class="number">0</span>][i];</span><br><span class="line">    	&#125;</span><br><span class="line">	    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; row; i++)&#123;</span><br><span class="line">	    	dp[i][<span class="number">0</span>] = dp[i<span class="number">-1</span>][<span class="number">0</span>] + grid[i][<span class="number">0</span>];</span><br><span class="line">    		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; column; j++)&#123;</span><br><span class="line">		    	dp[i][j] = std::<span class="built_in">min</span>(dp[i<span class="number">-1</span>][j], dp[i][j<span class="number">-1</span>]) + grid[i][j];</span><br><span class="line">		    &#125;</span><br><span class="line">    	&#125;</span><br><span class="line">	    <span class="keyword">return</span> dp[row<span class="number">-1</span>][column<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> test[][<span class="number">3</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>&#125;, &#123;<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>&#125;, &#123;<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line">	std::vector&lt;std::vector&lt;<span class="type">int</span>&gt; &gt; grid;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123;</span><br><span class="line">		grid.<span class="built_in">push_back</span>(std::<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++)&#123;</span><br><span class="line">			grid[i].<span class="built_in">push_back</span>(test[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	Solution solve;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, solve.<span class="built_in">minPathSum</span>(grid));	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minPathSum</span><span class="hljs-params">(std::vector&lt;std::vector&lt;<span class="hljs-type">int</span>&gt; &gt;&amp; grid)</span> </span>&#123;<br>    	<span class="hljs-keyword">if</span> (grid.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>)&#123;<br>	    	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	    &#125;<br>	    <span class="hljs-type">int</span> row = grid.<span class="hljs-built_in">size</span>();<br>    	<span class="hljs-type">int</span> column = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();<br>    	std::vector&lt;std::vector&lt;<span class="hljs-type">int</span>&gt; &gt; <br>						<span class="hljs-built_in">dp</span>(row, std::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(column, <span class="hljs-number">0</span>));<br>    	<br>	    dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = grid[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];<br>	    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; column; i++)&#123;<br>    		dp[<span class="hljs-number">0</span>][i] = dp[<span class="hljs-number">0</span>][i<span class="hljs-number">-1</span>] + grid[<span class="hljs-number">0</span>][i];<br>    	&#125;<br>	    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; row; i++)&#123;<br>	    	dp[i][<span class="hljs-number">0</span>] = dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] + grid[i][<span class="hljs-number">0</span>];<br>    		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; column; j++)&#123;<br>		    	dp[i][j] = std::<span class="hljs-built_in">min</span>(dp[i<span class="hljs-number">-1</span>][j], dp[i][j<span class="hljs-number">-1</span>]) + grid[i][j];<br>		    &#125;<br>    	&#125;<br>	    <span class="hljs-keyword">return</span> dp[row<span class="hljs-number">-1</span>][column<span class="hljs-number">-1</span>];<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> test[][<span class="hljs-number">3</span>] = &#123;&#123;<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>&#125;&#125;;<br>	std::vector&lt;std::vector&lt;<span class="hljs-type">int</span>&gt; &gt; grid;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++)&#123;<br>		grid.<span class="hljs-built_in">push_back</span>(std::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;());<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3</span>; j++)&#123;<br>			grid[i].<span class="hljs-built_in">push_back</span>(test[i][j]);<br>		&#125;<br>	&#125;<br>	Solution solve;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, solve.<span class="hljs-built_in">minPathSum</span>(grid));	<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 <p>java代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> minimum_path_sum;</span><br><span class="line"></span><br><span class="line"><span class="comment">//64.最小路径和</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minPathSum</span><span class="params">(<span class="type">int</span>[][] grid)</span> &#123;</span><br><span class="line">    	<span class="comment">//定义dp数组</span></span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[grid.length][grid[<span class="number">0</span>].length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> grid.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> grid[<span class="number">0</span>].length - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="keyword">if</span>(i == grid.length - <span class="number">1</span> &amp;&amp; j != grid[<span class="number">0</span>].length - <span class="number">1</span>)<span class="comment">//如果右边界,那么只能向左走</span></span><br><span class="line">                    dp[i][j] = grid[i][j] +  dp[i][j + <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(j == grid[<span class="number">0</span>].length - <span class="number">1</span> &amp;&amp; i != grid.length - <span class="number">1</span>)<span class="comment">//如果下边界,那么只能向上走</span></span><br><span class="line">                    dp[i][j] = grid[i][j] + dp[i + <span class="number">1</span>][j];</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(j != grid[<span class="number">0</span>].length - <span class="number">1</span> &amp;&amp; i != grid.length - <span class="number">1</span>)<span class="comment">//如果不是边界的情况,则要进行判断最小路径和</span></span><br><span class="line">                    dp[i][j] = grid[i][j] + Math.min(dp[i + <span class="number">1</span>][j], dp[i][j + <span class="number">1</span>]);</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    dp[i][j] = grid[i][j];<span class="comment">//从这个元素开始走</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    	<span class="type">int</span>[][] grid = &#123;&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>&#125;,&#123;<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line">    	<span class="type">Solution</span> <span class="variable">solu</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Solution</span>();</span><br><span class="line">    	System.out.println(solu.minPathSum(grid));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> minimum_path_sum;<br><br><span class="hljs-comment">//64.最小路径和</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>	<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">minPathSum</span><span class="hljs-params">(<span class="hljs-type">int</span>[][] grid)</span> &#123;<br>    	<span class="hljs-comment">//定义dp数组</span><br>        <span class="hljs-type">int</span>[][] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[grid.length][grid[<span class="hljs-number">0</span>].length];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> grid.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> grid[<span class="hljs-number">0</span>].length - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--) &#123;<br>                <span class="hljs-keyword">if</span>(i == grid.length - <span class="hljs-number">1</span> &amp;&amp; j != grid[<span class="hljs-number">0</span>].length - <span class="hljs-number">1</span>)<span class="hljs-comment">//如果右边界,那么只能向左走</span><br>                    dp[i][j] = grid[i][j] +  dp[i][j + <span class="hljs-number">1</span>];<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(j == grid[<span class="hljs-number">0</span>].length - <span class="hljs-number">1</span> &amp;&amp; i != grid.length - <span class="hljs-number">1</span>)<span class="hljs-comment">//如果下边界,那么只能向上走</span><br>                    dp[i][j] = grid[i][j] + dp[i + <span class="hljs-number">1</span>][j];<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(j != grid[<span class="hljs-number">0</span>].length - <span class="hljs-number">1</span> &amp;&amp; i != grid.length - <span class="hljs-number">1</span>)<span class="hljs-comment">//如果不是边界的情况,则要进行判断最小路径和</span><br>                    dp[i][j] = grid[i][j] + Math.min(dp[i + <span class="hljs-number">1</span>][j], dp[i][j + <span class="hljs-number">1</span>]);<br>                <span class="hljs-keyword">else</span><br>                    dp[i][j] = grid[i][j];<span class="hljs-comment">//从这个元素开始走</span><br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    	<span class="hljs-type">int</span>[][] grid = &#123;&#123;<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>&#125;,&#123;<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">1</span>&#125;,&#123;<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>&#125;&#125;;<br>    	<span class="hljs-type">Solution</span> <span class="hljs-variable">solu</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Solution</span>();<br>    	System.out.println(solu.minPathSum(grid));<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
       </section>
       <section class="extra">
@@ -296,7 +303,7 @@
 
 <footer class="footer">
   <div class="footer-social"><a 
-        href="tencent://message/?Menu=yes&uin=894519210 "
+        href="tencent://message/?Menu=yes&uin=123456 "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#12B7F5'" 
@@ -310,21 +317,21 @@
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconwechat-fill "></i>
       </a><a 
-        href="https://www.instagram.com/izhaoo/ "
+        href="https://www.instagram.com/WangWangZhou/ "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#DA2E76'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconinstagram "></i>
       </a><a 
-        href="https://github.com/zhaoo "
+        href="https://github.com/WangWangZhou "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#9f7be1'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  icongithub-fill "></i>
       </a><a 
-        href="mailto:izhaoo@163.com "
+        href="mailto:mclauncher996@163.com "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color=#FF3B00" 
@@ -339,6 +346,10 @@
       <div class="fab fab-plus">
     <i class="iconfont iconplus"></i>
   </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
   
   
   
@@ -386,6 +397,82 @@
 
 
 
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'nLMdFV0YjurM8Y8GcB1EThtf-gzGzoHsz',
+      appKey: '1EWJLdXWKkEYt0PGYijlzboS',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'https://fpga.vip';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'https://fpga.vip';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
 
 
 
@@ -406,9 +493,23 @@
 
 
 
+  <script defer src='https://hm.baidu.com/hm.js?f279a9b8769aff786de7464a603c8d8b'></script>
 
 
 
+  <script defer src='https://s9.cnzz.com/z_stat.php?id=1278069914&web_id=1278069914'></script>
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'UA-178467547-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

@@ -202,6 +202,13 @@ Docker 是一个开源的应用容器引...">
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 07, 2018</span>
       
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2018/12/07/win10-%E5%AE%89%E8%A3%85docker/" class="leancloud-counter" data-flag-title="win10 安装docker"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2018/12/07/win10-%E5%AE%89%E8%A3%85docker/" class="leancloud-like" data-flag-title="win10 安装docker"></span>
+        </span>
+      
       <span class="post-info-item"><i class="iconfont iconfont-size"></i>5597</span>
     </div>
   </div>
@@ -264,36 +271,36 @@ Windows安装文件：<a target="_blank" rel="noopener" href="http://mirrors.ali
 <h2 id="登录">登录</h2>
 <p><img    class="lazyload" data-original="http://xinqianpingtaib2btest.oss-cn-shenzhen.aliyuncs.com/blogimg/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20181207192335.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">docker登录</span></p>
 <h2 id="安装是否成功">安装是否成功</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt;docker --version</span><br><span class="line">Docker version 18.09.0, build 4d60db4</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">E:\&gt;docker --version<br>Docker version 18.09.0, build 4d60db4<br></code></pre></td></tr></table></figure>
 <h1>Hello-world</h1>
 <h2 id="拉取helloworld镜像">拉取helloWorld镜像</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt;docker pull hello-world</span><br><span class="line">Using default tag: latest</span><br><span class="line">Error response from daemon: </span><br><span class="line">Get https://registry-1.docker.io/v2/library/hello-world/manifests/latest: </span><br><span class="line">net/http: TLS handshake timeout</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">E:\&gt;docker pull hello-world<br>Using default tag: latest<br>Error response from daemon: <br>Get https://registry-1.docker.io/v2/library/hello-world/manifests/latest: <br>net/http: TLS handshake timeout<br></code></pre></td></tr></table></figure>
 <p>发现下载不来</p>
 <h2 id="配置镜像加速">配置镜像加速</h2>
 <p>Docker可以配置的国内镜像有很多可供选择，比如说：阿里云，网易蜂巢，DaoCloud，Docker中国区官方镜像等，这些都是可以提供给大家随意选择的不错的镜像仓库。</p>
 <p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/f3e34a12c607f4f5eb653596.html">阿里云docker镜像加速</a><br>
 <strong>建议不要加端口号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [</span><br><span class="line">    &quot;https://xxx.mirror.aliyuncs.com:443&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;insecure-registries&quot;: [],</span><br><span class="line">  &quot;debug&quot;: true,</span><br><span class="line">  &quot;experimental&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&#123;<br>  &quot;registry-mirrors&quot;: [<br>    &quot;https://xxx.mirror.aliyuncs.com:443&quot;<br>  ],<br>  &quot;insecure-registries&quot;: [],<br>  &quot;debug&quot;: true,<br>  &quot;experimental&quot;: true<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>里面的xxx是的你阿里云镜像加速地址。<br>
 再次下载，下载成功。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt;docker pull hello-world</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/hello-world</span><br><span class="line">d1725b59e92d: Pull complete</span><br><span class="line">Digest: sha256:0add3ace90ecb4adbf7777e9aacf1</span><br><span class="line">Status: Downloaded newer image for hello-world:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">E:\&gt;docker pull hello-world<br>Using default tag: latest<br>latest: Pulling from library/hello-world<br>d1725b59e92d: Pull complete<br>Digest: sha256:0add3ace90ecb4adbf7777e9aacf1<br>Status: Downloaded newer image for hello-world:latest<br></code></pre></td></tr></table></figure>
 <p>运行hello-world</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt;docker run hello-world</span><br><span class="line">Hello from Docker!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">E:\&gt;docker run hello-world<br>Hello from Docker!<br></code></pre></td></tr></table></figure>
 <h1>docker 命令</h1>
 <h2 id="docker镜像命令">docker镜像命令</h2>
 <h3 id="查找镜像">查找镜像</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt;docker search centos</span><br><span class="line">NAME     DESCRIPTION      STARS               OFFICIAL            AUTOMATED</span><br><span class="line">centos          The official build of CentOS.              5020             [OK]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">E:\&gt;docker search centos<br>NAME     DESCRIPTION      STARS               OFFICIAL            AUTOMATED<br>centos          The official build of CentOS.              5020             [OK]<br></code></pre></td></tr></table></figure>
 <h3 id="拉取镜像">拉取镜像</h3>
 <p>拉取镜像也就是把镜像下载到本地</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt;docker pull centos</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/centos</span><br><span class="line">a02a49cb5d: Extracting [=========&gt;     ]  69.07MB/75.17MB</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">E:\&gt;docker pull centos<br>Using default tag: latest<br>latest: Pulling from library/centos<br>a02a49cb5d: Extracting [=========&gt;     ]  69.07MB/75.17MB<br></code></pre></td></tr></table></figure>
 <h3 id="列出镜像">列出镜像</h3>
 <p>列出本地镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt;docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">centos              latest              1e1148e4cc2c        38 hours ago        202MB</span><br><span class="line">mysql               5.6                 a876cc5d29e4        3 weeks ago         256MB</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">E:\&gt;docker images<br>REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE<br>centos              latest              1e1148e4cc2c        38 hours ago        202MB<br>mysql               5.6                 a876cc5d29e4        3 weeks ago         256MB<br></code></pre></td></tr></table></figure>
 <h2 id="docker容器">docker容器</h2>
 <h3 id="启动容器">启动容器</h3>
 <p>运行交互式的容器<br>
 这里的&quot;1e1148e4cc2c&quot;是上面docker  images列出来的镜像的 ID</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt;docker run -i -t 1e1148e4cc2c /bin/bash</span><br><span class="line">[root@33bab162592 /]# ls</span><br><span class="line">anaconda-post.log  bin  dev  etc  home  lib  lib64  media  mnt  </span><br><span class="line">opt  proc  root  run  sbin  srv  sys  tmp  usr  var</span><br><span class="line">[root@33bab162592 /]# cat /etc/centos-release</span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line">[root@33bab162592 /]# exit</span><br><span class="line">exit</span><br><span class="line">E:\&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">E:\&gt;docker run -i -t 1e1148e4cc2c /bin/bash<br>[root@33bab162592 /]# ls<br>anaconda-post.log  bin  dev  etc  home  lib  lib64  media  mnt  <br>opt  proc  root  run  sbin  srv  sys  tmp  usr  var<br>[root@33bab162592 /]# cat /etc/centos-release<br>CentOS Linux release 7.6.1810 (Core)<br>[root@33bab162592 /]# exit<br>exit<br>E:\&gt;<br></code></pre></td></tr></table></figure>
 <p>我们通过docker的两个参数 -i -t，让docker运行的容器实现&quot;对话&quot;的能力<br>
 各个参数解析：<br>
 -t:在新容器内指定一个伪终端或终端。<br>
@@ -314,7 +321,7 @@ docker ps -l：查看最近运行过的容器</p>
 <h1>Docker 应用</h1>
 <h2 id="windows下载docker搭建mysql">windows下载docker搭建mysql</h2>
 <p>下载mysql镜像 docker pull mysql，docker run运行。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --rm --name ecMysql </span><br><span class="line">-v D:\docker\mysql:/var/lib/mysql </span><br><span class="line">-v D:\docker\mysqlConf:/etc/mysql/conf.d </span><br><span class="line">-e MYSQL_ROOT_PASSWORD=123456 </span><br><span class="line">-p 3307:3306 mysql </span><br><span class="line">--character-set-server=utf8mb4 </span><br><span class="line">--collation-server=utf8mb4_unicode_ci</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">docker run -d --rm --name ecMysql <br>-v D:\docker\mysql:/var/lib/mysql <br>-v D:\docker\mysqlConf:/etc/mysql/conf.d <br>-e MYSQL_ROOT_PASSWORD=123456 <br>-p 3307:3306 mysql <br>--character-set-server=utf8mb4 <br>--collation-server=utf8mb4_unicode_ci<br></code></pre></td></tr></table></figure>
 <p>添加：–character-set-server=utf8mb4 –collation-server=utf8mb4_unicode_ci 防止中文乱码<br>
 参数解释：<br>
 -d 后台运行<br>
@@ -325,9 +332,9 @@ docker ps -l：查看最近运行过的容器</p>
 -p 暴露端口 格式– 本地端口:镜像端口<br>
 docker run [参数] 镜像名</p>
 <p>进入mysql</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">E:\&gt;docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE    COMMAND   CREATED             STATUS     PORTS  NAMES</span><br><span class="line">a4df   mysql:5.6   &quot;do…&quot;   5 seconds ago    Up 3 seconds  0.0.0.0:3307-&gt;3306/tcp   ecMysql</span><br><span class="line"></span><br><span class="line">E:\&gt;docker exec -it ecMysql /bin/bash</span><br><span class="line">root@a4d15abc185:/# mysql -u root -P 3307 -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 3</span><br><span class="line">Server version: 5.6.42 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &#x27;help;&#x27; or &#x27;\h&#x27; for help. Type &#x27;\c&#x27; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"><br>E:\&gt;docker ps -a<br>CONTAINER ID        IMAGE    COMMAND   CREATED             STATUS     PORTS  NAMES<br>a4df   mysql:5.6   &quot;do…&quot;   5 seconds ago    Up 3 seconds  0.0.0.0:3307-&gt;3306/tcp   ecMysql<br><br>E:\&gt;docker exec -it ecMysql /bin/bash<br>root@a4d15abc185:/# mysql -u root -P 3307 -p<br>Enter password:<br>Welcome to the MySQL monitor.  Commands end with ; or \g.<br>Your MySQL connection id is 3<br>Server version: 5.6.42 MySQL Community Server (GPL)<br><br>Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.<br><br>Oracle is a registered trademark of Oracle Corporation and/or its<br>affiliates. Other names may be trademarks of their respective<br>owners.<br><br>Type &#x27;help;&#x27; or &#x27;\h&#x27; for help. Type &#x27;\c&#x27; to clear the current input statement.<br><br>mysql&gt;<br></code></pre></td></tr></table></figure>
 <p>设置一个用户，方便远程登录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql</span><br><span class="line">select Host,User from user;</span><br><span class="line">grant all on *.* to &#x27;ddff&#x27;@&#x27;%&#x27; identified by &#x27;ddgg2018&#x27;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">use mysql<br>select Host,User from user;<br>grant all on *.* to &#x27;ddff&#x27;@&#x27;%&#x27; identified by &#x27;ddgg2018&#x27;;<br></code></pre></td></tr></table></figure>
 <p>添加远程访问账户<br>
 前面已经暴露端口，直接使用Navicat连接操作即可，当然你也可以用命令行 ，ip：127.0.0.1 用户名：ddff 密码：ddgg2018</p>
 <h1>参考资料</h1>
@@ -386,7 +393,7 @@ docker run [参数] 镜像名</p>
 
 <footer class="footer">
   <div class="footer-social"><a 
-        href="tencent://message/?Menu=yes&uin=894519210 "
+        href="tencent://message/?Menu=yes&uin=123456 "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#12B7F5'" 
@@ -400,21 +407,21 @@ docker run [参数] 镜像名</p>
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconwechat-fill "></i>
       </a><a 
-        href="https://www.instagram.com/izhaoo/ "
+        href="https://www.instagram.com/WangWangZhou/ "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#DA2E76'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconinstagram "></i>
       </a><a 
-        href="https://github.com/zhaoo "
+        href="https://github.com/WangWangZhou "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#9f7be1'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  icongithub-fill "></i>
       </a><a 
-        href="mailto:izhaoo@163.com "
+        href="mailto:mclauncher996@163.com "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color=#FF3B00" 
@@ -429,6 +436,10 @@ docker run [参数] 镜像名</p>
       <div class="fab fab-plus">
     <i class="iconfont iconplus"></i>
   </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
   
   
   
@@ -476,6 +487,82 @@ docker run [参数] 镜像名</p>
 
 
 
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'nLMdFV0YjurM8Y8GcB1EThtf-gzGzoHsz',
+      appKey: '1EWJLdXWKkEYt0PGYijlzboS',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'https://fpga.vip';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'https://fpga.vip';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
 
 
 
@@ -496,9 +583,23 @@ docker run [参数] 镜像名</p>
 
 
 
+  <script defer src='https://hm.baidu.com/hm.js?f279a9b8769aff786de7464a603c8d8b'></script>
 
 
 
+  <script defer src='https://s9.cnzz.com/z_stat.php?id=1278069914&web_id=1278069914'></script>
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'UA-178467547-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

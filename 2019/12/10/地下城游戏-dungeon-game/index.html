@@ -202,6 +202,13 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 10, 2019</span>
       
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2019/12/10/%E5%9C%B0%E4%B8%8B%E5%9F%8E%E6%B8%B8%E6%88%8F-dungeon-game/" class="leancloud-counter" data-flag-title="地下城游戏(dungeon-game)"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2019/12/10/%E5%9C%B0%E4%B8%8B%E5%9F%8E%E6%B8%B8%E6%88%8F-dungeon-game/" class="leancloud-like" data-flag-title="地下城游戏(dungeon-game)"></span>
+        </span>
+      
       <span class="post-info-item"><i class="iconfont iconfont-size"></i>3336</span>
     </div>
   </div>
@@ -225,9 +232,9 @@
 <h1>思路</h1>
 <p>参考了评论中的答案，使用动态规划 核心思路是：每次只能往右边或者下面走，那么如果你知道了往右边走需要的最小生命代价和往下面需要的最小生命代价，那么你就知道了当前需要的最小代价 使用二维数组来保存最小生命代价，life[i][j]表示从i，j开始走到右下角的最小生命代价 从右下开始往上动态规划，初始话最小代价是1，如果当前不需要额外的生命代价的话，那么当前的最小生命代价就是1，如果需要额外的代价的话，那么最小生命代价就是额外需要的代价。 说的比较绕口，代码应该比较好理解，总的思路就是，如果后面不需要额外生命，那么你只需要保证能走到当前就可以了，如果后面需要额外代价，那么你需要保证能走到当前并且+后面的额外生命代价</p>
 <h2 id="java代码">java代码</h2>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">// 求骑士走到右下角的最低生命值</span></span><br><span class="line">    <span class="comment">// 只能右或者下</span></span><br><span class="line">    <span class="comment">// DP</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">calculateMinimumHP</span><span class="params">(<span class="type">int</span>[][] dungeon)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> dungeon.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">col</span> <span class="operator">=</span> dungeon[<span class="number">0</span>].length;</span><br><span class="line">        <span class="type">int</span>[][] life = <span class="keyword">new</span> <span class="title class_">int</span>[row][col]; <span class="comment">// life[i][j] 表示i,j的时候需要的最小生命值，肯定不能小于1</span></span><br><span class="line">        <span class="comment">// 初始化</span></span><br><span class="line">        <span class="keyword">if</span>(dungeon[row - <span class="number">1</span>][col - <span class="number">1</span>] &lt; <span class="number">0</span>)&#123;</span><br><span class="line">            life[row - <span class="number">1</span>][col - <span class="number">1</span>] = -dungeon[row - <span class="number">1</span>][col - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            life[row - <span class="number">1</span>][col - <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 初始化最后一列</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> row - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(life[i+<span class="number">1</span>][col-<span class="number">1</span>] == <span class="number">1</span>)&#123; <span class="comment">// 表示后面的可以自己满足</span></span><br><span class="line">                life[i][col-<span class="number">1</span>] = Math.max(<span class="number">1</span>,-dungeon[i][col - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123; <span class="comment">// 后面的不可以满足</span></span><br><span class="line">                life[i][col-<span class="number">1</span>] = Math.max(life[i+<span class="number">1</span>][col-<span class="number">1</span>] - dungeon[i][col - <span class="number">1</span>],<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 初始话最后一行</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> col - <span class="number">2</span>; j &gt;= <span class="number">0</span>; j --)&#123;</span><br><span class="line">            <span class="keyword">if</span>(life[row - <span class="number">1</span>][j+<span class="number">1</span>] == <span class="number">1</span>)&#123;</span><br><span class="line">                life[row-<span class="number">1</span>][j] = Math.max(<span class="number">1</span>,-dungeon[row-<span class="number">1</span>][j]+<span class="number">1</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                life[row-<span class="number">1</span>][j] = Math.max(life[row-<span class="number">1</span>][j+<span class="number">1</span>]-dungeon[row-<span class="number">1</span>][j],<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> row - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> col - <span class="number">2</span>; j&gt;= <span class="number">0</span>; j--)&#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> Math.min(life[i][j+<span class="number">1</span>],life[i+<span class="number">1</span>][j]);</span><br><span class="line">                <span class="keyword">if</span>(min == <span class="number">1</span>)&#123; <span class="comment">// 后面可以满足</span></span><br><span class="line">                    life[i][j] = Math.max(<span class="number">1</span>,-dungeon[i][j]+<span class="number">1</span>);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    life[i][j] = Math.max(<span class="number">1</span>,min-dungeon[i][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> life[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-comment">// 求骑士走到右下角的最低生命值</span><br>    <span class="hljs-comment">// 只能右或者下</span><br>    <span class="hljs-comment">// DP</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">calculateMinimumHP</span><span class="hljs-params">(<span class="hljs-type">int</span>[][] dungeon)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">row</span> <span class="hljs-operator">=</span> dungeon.length;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">col</span> <span class="hljs-operator">=</span> dungeon[<span class="hljs-number">0</span>].length;<br>        <span class="hljs-type">int</span>[][] life = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[row][col]; <span class="hljs-comment">// life[i][j] 表示i,j的时候需要的最小生命值，肯定不能小于1</span><br>        <span class="hljs-comment">// 初始化</span><br>        <span class="hljs-keyword">if</span>(dungeon[row - <span class="hljs-number">1</span>][col - <span class="hljs-number">1</span>] &lt; <span class="hljs-number">0</span>)&#123;<br>            life[row - <span class="hljs-number">1</span>][col - <span class="hljs-number">1</span>] = -dungeon[row - <span class="hljs-number">1</span>][col - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            life[row - <span class="hljs-number">1</span>][col - <span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-comment">// 初始化最后一列</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> row - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--)&#123;<br>            <span class="hljs-keyword">if</span>(life[i+<span class="hljs-number">1</span>][col-<span class="hljs-number">1</span>] == <span class="hljs-number">1</span>)&#123; <span class="hljs-comment">// 表示后面的可以自己满足</span><br>                life[i][col-<span class="hljs-number">1</span>] = Math.max(<span class="hljs-number">1</span>,-dungeon[i][col - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>);<br>            &#125;<span class="hljs-keyword">else</span>&#123; <span class="hljs-comment">// 后面的不可以满足</span><br>                life[i][col-<span class="hljs-number">1</span>] = Math.max(life[i+<span class="hljs-number">1</span>][col-<span class="hljs-number">1</span>] - dungeon[i][col - <span class="hljs-number">1</span>],<span class="hljs-number">1</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 初始话最后一行</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> col - <span class="hljs-number">2</span>; j &gt;= <span class="hljs-number">0</span>; j --)&#123;<br>            <span class="hljs-keyword">if</span>(life[row - <span class="hljs-number">1</span>][j+<span class="hljs-number">1</span>] == <span class="hljs-number">1</span>)&#123;<br>                life[row-<span class="hljs-number">1</span>][j] = Math.max(<span class="hljs-number">1</span>,-dungeon[row-<span class="hljs-number">1</span>][j]+<span class="hljs-number">1</span>);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                life[row-<span class="hljs-number">1</span>][j] = Math.max(life[row-<span class="hljs-number">1</span>][j+<span class="hljs-number">1</span>]-dungeon[row-<span class="hljs-number">1</span>][j],<span class="hljs-number">1</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> row - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> col - <span class="hljs-number">2</span>; j&gt;= <span class="hljs-number">0</span>; j--)&#123;<br>                <span class="hljs-type">int</span> <span class="hljs-variable">min</span> <span class="hljs-operator">=</span> Math.min(life[i][j+<span class="hljs-number">1</span>],life[i+<span class="hljs-number">1</span>][j]);<br>                <span class="hljs-keyword">if</span>(min == <span class="hljs-number">1</span>)&#123; <span class="hljs-comment">// 后面可以满足</span><br>                    life[i][j] = Math.max(<span class="hljs-number">1</span>,-dungeon[i][j]+<span class="hljs-number">1</span>);<br>                &#125;<span class="hljs-keyword">else</span>&#123;<br>                    life[i][j] = Math.max(<span class="hljs-number">1</span>,min-dungeon[i][j]);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> life[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="python代码">python代码</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculateMinimumHP</span>(<span class="params">self, dungeon</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type dungeon: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        row, col = <span class="built_in">len</span>(dungeon), <span class="built_in">len</span>(dungeon[<span class="number">0</span>])</span><br><span class="line">        mem = [[<span class="number">0</span>]*col <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(row)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(row-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(col-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> i == row-<span class="number">1</span> <span class="keyword">and</span> j == col-<span class="number">1</span>:</span><br><span class="line">                    mem[i][j] = <span class="built_in">max</span>(<span class="number">0</span>, -dungeon[i][j])</span><br><span class="line">                <span class="keyword">elif</span> i == row-<span class="number">1</span>:</span><br><span class="line">                    mem[i][j] = <span class="built_in">max</span>(<span class="number">0</span>, mem[i][j+<span class="number">1</span>] - dungeon[i][j])</span><br><span class="line">                <span class="keyword">elif</span> j == col-<span class="number">1</span>:</span><br><span class="line">                    mem[i][j] = <span class="built_in">max</span>(<span class="number">0</span>, mem[i+<span class="number">1</span>][j] - dungeon[i][j])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    mem[i][j] = <span class="built_in">max</span>(<span class="number">0</span>, <span class="built_in">min</span>(mem[i+<span class="number">1</span>][j], mem[i][j+<span class="number">1</span>]) - dungeon[i][j])</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> mem[<span class="number">0</span>][<span class="number">0</span>] + <span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">calculateMinimumHP</span>(<span class="hljs-params">self, dungeon</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        :type dungeon: List[List[int]]</span><br><span class="hljs-string">        :rtype: int</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        row, col = <span class="hljs-built_in">len</span>(dungeon), <span class="hljs-built_in">len</span>(dungeon[<span class="hljs-number">0</span>])<br>        mem = [[<span class="hljs-number">0</span>]*col <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(row)]<br><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(row-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(col-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>                <span class="hljs-keyword">if</span> i == row-<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> j == col-<span class="hljs-number">1</span>:<br>                    mem[i][j] = <span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>, -dungeon[i][j])<br>                <span class="hljs-keyword">elif</span> i == row-<span class="hljs-number">1</span>:<br>                    mem[i][j] = <span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>, mem[i][j+<span class="hljs-number">1</span>] - dungeon[i][j])<br>                <span class="hljs-keyword">elif</span> j == col-<span class="hljs-number">1</span>:<br>                    mem[i][j] = <span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>, mem[i+<span class="hljs-number">1</span>][j] - dungeon[i][j])<br>                <span class="hljs-keyword">else</span>:<br>                    mem[i][j] = <span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">min</span>(mem[i+<span class="hljs-number">1</span>][j], mem[i][j+<span class="hljs-number">1</span>]) - dungeon[i][j])<br>                <br>        <span class="hljs-keyword">return</span> mem[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span><br><br></code></pre></td></tr></table></figure>
       </section>
       <section class="extra">
         
@@ -281,7 +288,7 @@
 
 <footer class="footer">
   <div class="footer-social"><a 
-        href="tencent://message/?Menu=yes&uin=894519210 "
+        href="tencent://message/?Menu=yes&uin=123456 "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#12B7F5'" 
@@ -295,21 +302,21 @@
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconwechat-fill "></i>
       </a><a 
-        href="https://www.instagram.com/izhaoo/ "
+        href="https://www.instagram.com/WangWangZhou/ "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#DA2E76'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconinstagram "></i>
       </a><a 
-        href="https://github.com/zhaoo "
+        href="https://github.com/WangWangZhou "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#9f7be1'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  icongithub-fill "></i>
       </a><a 
-        href="mailto:izhaoo@163.com "
+        href="mailto:mclauncher996@163.com "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color=#FF3B00" 
@@ -324,6 +331,10 @@
       <div class="fab fab-plus">
     <i class="iconfont iconplus"></i>
   </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
   
   
   
@@ -371,6 +382,82 @@
 
 
 
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'nLMdFV0YjurM8Y8GcB1EThtf-gzGzoHsz',
+      appKey: '1EWJLdXWKkEYt0PGYijlzboS',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'https://fpga.vip';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'https://fpga.vip';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
 
 
 
@@ -391,9 +478,23 @@
 
 
 
+  <script defer src='https://hm.baidu.com/hm.js?f279a9b8769aff786de7464a603c8d8b'></script>
 
 
 
+  <script defer src='https://s9.cnzz.com/z_stat.php?id=1278069914&web_id=1278069914'></script>
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'UA-178467547-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

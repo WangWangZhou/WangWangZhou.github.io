@@ -202,6 +202,13 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 23, 2019</span>
       
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2019/12/23/LeetCode%E8%AF%BE%E7%A8%8B%E8%A1%A8/" class="leancloud-counter" data-flag-title="LeetCode课程表"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2019/12/23/LeetCode%E8%AF%BE%E7%A8%8B%E8%A1%A8/" class="leancloud-like" data-flag-title="LeetCode课程表"></span>
+        </span>
+      
       <span class="post-info-item"><i class="iconfont iconfont-size"></i>3389</span>
     </div>
   </div>
@@ -214,9 +221,9 @@
 <p>在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们: <code>[0,1]</code></p>
 <p>给定课程总量以及它们的先决条件，判断是否可能完成所有课程的学习？</p>
 <p>示例 1:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 2, [[1,0]] </span><br><span class="line">输出: true</span><br><span class="line">解释: 总共有 2 门课程。学习课程 1 之前，你需要完成课程 0。所以这是可能的。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">输入: 2, [[1,0]] <br>输出: true<br>解释: 总共有 2 门课程。学习课程 1 之前，你需要完成课程 0。所以这是可能的。<br></code></pre></td></tr></table></figure>
 <p>示例 2:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 2, [[1,0],[0,1]]</span><br><span class="line">输出: false</span><br><span class="line">解释: 总共有 2 门课程。学习课程 1 之前，你需要先完成​课程 0；并且学习课程 0 之前，你还应先完成课程 1。这是不可能的。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">输入: 2, [[1,0],[0,1]]<br>输出: false<br>解释: 总共有 2 门课程。学习课程 1 之前，你需要先完成​课程 0；并且学习课程 0 之前，你还应先完成课程 1。这是不可能的。<br></code></pre></td></tr></table></figure>
 <p>说明:</p>
 <p>输入的先决条件是由边缘列表表示的图形，而不是邻接矩阵。详情请参见图的表示法。<br>
 你可以假定输入的先决条件中没有重复的边。<br>
@@ -231,7 +238,7 @@
 <p>我们将 u 放入答案中；</p>
 <p>我们移除 u 的所有出边，也就是将 u 的所有相邻节点的入度减少 11。如果某个相邻节点 v 的入度变为 0，那么我们就将 v 放入队列中。</p>
 <p>在广度优先搜索的过程结束后。如果答案中包含了这 n 个节点，那么我们就找到了一种拓扑排序，否则说明图中存在环，也就不存在拓扑排序了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canFinish</span><span class="params">(<span class="type">int</span> numCourses, <span class="type">int</span> prerequisites)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] indegrees = <span class="keyword">new</span> <span class="title class_">int</span>[numCourses];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span>[] cp : prerequisites) indegrees[cp[<span class="number">0</span>]]++;<span class="comment">//入度增加</span></span><br><span class="line"></span><br><span class="line">        LinkedList&lt;Integer&gt; queue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; numCourses; i++)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(indegrees[i] == <span class="number">0</span>) queue.addLast(i);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="type">Integer</span> <span class="variable">pre</span> <span class="operator">=</span> queue.removeFirst();</span><br><span class="line"></span><br><span class="line">            numCourses--;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span>[] req : prerequisites) &#123;<span class="comment">//循环二维数组</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(req[<span class="number">1</span>] != pre) <span class="keyword">continue</span>;<span class="comment">//判断是不是依赖这一门课，如果不是，就跳过</span></span><br><span class="line">                <span class="comment">//如果是这门课,入席数组减减</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(--indegrees[req[<span class="number">0</span>]] == <span class="number">0</span>) queue.add(req[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> numCourses == <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">canFinish</span><span class="hljs-params">(<span class="hljs-type">int</span> numCourses, <span class="hljs-type">int</span> prerequisites)</span> &#123;<br><br>        <span class="hljs-type">int</span>[] indegrees = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[numCourses];<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span>[] cp : prerequisites) indegrees[cp[<span class="hljs-number">0</span>]]++;<span class="hljs-comment">//入度增加</span><br><br>        LinkedList&lt;Integer&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; numCourses; i++)&#123;<br><br>            <span class="hljs-keyword">if</span>(indegrees[i] == <span class="hljs-number">0</span>) queue.addLast(i);<br><br>        &#125;<br><br>        <span class="hljs-keyword">while</span>(!queue.isEmpty()) &#123;<br><br>            <span class="hljs-type">Integer</span> <span class="hljs-variable">pre</span> <span class="hljs-operator">=</span> queue.removeFirst();<br><br>            numCourses--;<br><br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span>[] req : prerequisites) &#123;<span class="hljs-comment">//循环二维数组</span><br><br>                <span class="hljs-keyword">if</span>(req[<span class="hljs-number">1</span>] != pre) <span class="hljs-keyword">continue</span>;<span class="hljs-comment">//判断是不是依赖这一门课，如果不是，就跳过</span><br>                <span class="hljs-comment">//如果是这门课,入席数组减减</span><br><br>                <span class="hljs-keyword">if</span>(--indegrees[req[<span class="hljs-number">0</span>]] == <span class="hljs-number">0</span>) queue.add(req[<span class="hljs-number">0</span>]);<br><br>            &#125;<br><br>        &#125;<br><br>        <span class="hljs-keyword">return</span> numCourses == <span class="hljs-number">0</span>;<br><br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
 <h2 id="方法2：深度优先遍历">方法2：深度优先遍历</h2>
 <p>对于图中的任意一个节点，它在搜索的过程中有三种状态，即：</p>
 <ul>
@@ -260,7 +267,7 @@
 </ul>
 <p>当 u 的所有相邻节点都为「已完成」时，我们将 u 放入栈中，并将其标记为「已完成」。</p>
 <p>在整个深度优先搜索的过程结束后，如果我们没有找到图中的环，那么栈中存储这所有的 n 个节点，从栈顶到栈底的顺序即为一种拓扑排序。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; edges;</span><br><span class="line">    int[] visited;</span><br><span class="line">    boolean valid = true;</span><br><span class="line"></span><br><span class="line">    public boolean canFinish(int numCourses, int[][] prerequisites) &#123;</span><br><span class="line">        edges = new ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; numCourses; ++i) &#123;</span><br><span class="line">            edges.add(new ArrayList&lt;Integer&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        visited = new int[numCourses];</span><br><span class="line">        for (int[] info : prerequisites) &#123;</span><br><span class="line">            edges.get(info[1]).add(info[0]);</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; numCourses &amp;&amp; valid; ++i) &#123;</span><br><span class="line">            if (visited[i] == 0) &#123;</span><br><span class="line">                dfs(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return valid;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void dfs(int u) &#123;</span><br><span class="line">        visited[u] = 1;</span><br><span class="line">        for (int v: edges.get(u)) &#123;</span><br><span class="line">            if (visited[v] == 0) &#123;</span><br><span class="line">                dfs(v);</span><br><span class="line">                if (!valid) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else if (visited[v] == 1) &#123;</span><br><span class="line">                valid = false;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        visited[u] = 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">class Solution &#123;<br>    List&lt;List&lt;Integer&gt;&gt; edges;<br>    int[] visited;<br>    boolean valid = true;<br><br>    public boolean canFinish(int numCourses, int[][] prerequisites) &#123;<br>        edges = new ArrayList&lt;List&lt;Integer&gt;&gt;();<br>        for (int i = 0; i &lt; numCourses; ++i) &#123;<br>            edges.add(new ArrayList&lt;Integer&gt;());<br>        &#125;<br>        visited = new int[numCourses];<br>        for (int[] info : prerequisites) &#123;<br>            edges.get(info[1]).add(info[0]);<br>        &#125;<br>        for (int i = 0; i &lt; numCourses &amp;&amp; valid; ++i) &#123;<br>            if (visited[i] == 0) &#123;<br>                dfs(i);<br>            &#125;<br>        &#125;<br>        return valid;<br>    &#125;<br><br>    public void dfs(int u) &#123;<br>        visited[u] = 1;<br>        for (int v: edges.get(u)) &#123;<br>            if (visited[v] == 0) &#123;<br>                dfs(v);<br>                if (!valid) &#123;<br>                    return;<br>                &#125;<br>            &#125; else if (visited[v] == 1) &#123;<br>                valid = false;<br>                return;<br>            &#125;<br>        &#125;<br>        visited[u] = 2;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
       </section>
       <section class="extra">
         
@@ -314,7 +321,7 @@
 
 <footer class="footer">
   <div class="footer-social"><a 
-        href="tencent://message/?Menu=yes&uin=894519210 "
+        href="tencent://message/?Menu=yes&uin=123456 "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#12B7F5'" 
@@ -328,21 +335,21 @@
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconwechat-fill "></i>
       </a><a 
-        href="https://www.instagram.com/izhaoo/ "
+        href="https://www.instagram.com/WangWangZhou/ "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#DA2E76'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconinstagram "></i>
       </a><a 
-        href="https://github.com/zhaoo "
+        href="https://github.com/WangWangZhou "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#9f7be1'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  icongithub-fill "></i>
       </a><a 
-        href="mailto:izhaoo@163.com "
+        href="mailto:mclauncher996@163.com "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color=#FF3B00" 
@@ -357,6 +364,10 @@
       <div class="fab fab-plus">
     <i class="iconfont iconplus"></i>
   </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
   
   
   
@@ -404,6 +415,82 @@
 
 
 
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'nLMdFV0YjurM8Y8GcB1EThtf-gzGzoHsz',
+      appKey: '1EWJLdXWKkEYt0PGYijlzboS',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'https://fpga.vip';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'https://fpga.vip';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
 
 
 
@@ -424,9 +511,23 @@
 
 
 
+  <script defer src='https://hm.baidu.com/hm.js?f279a9b8769aff786de7464a603c8d8b'></script>
 
 
 
+  <script defer src='https://s9.cnzz.com/z_stat.php?id=1278069914&web_id=1278069914'></script>
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'UA-178467547-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

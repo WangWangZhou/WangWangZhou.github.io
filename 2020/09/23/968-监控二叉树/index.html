@@ -202,6 +202,13 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>九月 23, 2020</span>
       
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2020/09/23/968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/" class="leancloud-counter" data-flag-title="968. 监控二叉树"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2020/09/23/968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/" class="leancloud-like" data-flag-title="968. 监控二叉树"></span>
+        </span>
+      
       <span class="post-info-item"><i class="iconfont iconfont-size"></i>3486</span>
     </div>
   </div>
@@ -215,10 +222,10 @@
 <p>计算监控树的所有节点所需的最小摄像头数量。</p>
 <p><strong>示例 1：</strong></p>
 <p><img   class="lazyload" data-original="https://xinqianpingtaib2btest.oss-cn-shenzhen.aliyuncs.com/xinqianpingtaib2btest/blogimg/2020/bst_cameras_01.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[0,0,null,0,0]</span><br><span class="line">输出：1</span><br><span class="line">解释：如图所示，一台摄像头足以监控所有节点。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">输入：[0,0,null,0,0]<br>输出：1<br>解释：如图所示，一台摄像头足以监控所有节点。<br></code></pre></td></tr></table></figure>
 <p><strong>示例 2：</strong></p>
 <p><img   class="lazyload" data-original="https://xinqianpingtaib2btest.oss-cn-shenzhen.aliyuncs.com/xinqianpingtaib2btest/blogimg/2020/bst_cameras_02.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt=""></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[0,0,null,0,null,0,null,null,0]</span><br><span class="line">输出：2</span><br><span class="line">解释：需要至少两个摄像头来监视树的所有节点。 上图显示了摄像头放置的有效位置之一。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">输入：[0,0,null,0,null,0,null,null,0]<br>输出：2<br>解释：需要至少两个摄像头来监视树的所有节点。 上图显示了摄像头放置的有效位置之一。<br></code></pre></td></tr></table></figure>
 <p><strong>提示：</strong></p>
 <ol>
 <li>给定树的节点数的范围是 [1, 1000]。</li>
@@ -228,7 +235,7 @@
 <p>这是一道hard难度的题目。我们要从底向上进行推导，因为尽量让叶子节点的父节点安装摄像头，这样摄像头的数量才是最少的。<br>
 如何从低向上推导呢？<br>
 采用后序遍历也就是左右中的顺序，这样就可以从下到上进行推导了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">//NO_CAMERA表示的是子节点没有相机，当前节点也没放相机</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">NO_CAMERA</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//HAS_CAMERA表示当前节点有一个相机</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">HAS_CAMERA</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//NO_NEEDED表示当前节点没有相机，但他的子节点有一个相机，把它给</span></span><br><span class="line">    <span class="comment">//覆盖了，所以它不需要了。或者他是一个空的节点也是不需要相机的</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">NO_NEEDED</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//全局的，统计有多少相机</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minCameraCover</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="comment">//边界条件判断</span></span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//如果最后返回的是NO_CAMERA，表示root节点的子节点也没有相机，</span></span><br><span class="line">        <span class="comment">//所以root节点要添加一个相机</span></span><br><span class="line">        <span class="keyword">if</span> (dfs(root) == NO_CAMERA)</span><br><span class="line">            res++;</span><br><span class="line">        <span class="comment">//返回结果</span></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">dfs</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="comment">//如果是空的，就不需要相机了</span></span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span> NO_NEEDED;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> dfs(root.left);</span><br><span class="line">        <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> dfs(root.right);</span><br><span class="line">        <span class="comment">//如果左右子节点有一个是NO_CAMERA，表示的是子节点既没相机，也没相机覆盖它，</span></span><br><span class="line">        <span class="comment">//所以当前节点需要有一个相机</span></span><br><span class="line">        <span class="keyword">if</span> (left == NO_CAMERA || right == NO_CAMERA) &#123;</span><br><span class="line">            <span class="comment">//在当前节点放一个相机，统计相机的个数</span></span><br><span class="line">            res++;</span><br><span class="line">            <span class="keyword">return</span> HAS_CAMERA;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果左右子节点只要有一个有相机，那么当前节点就不需要相机了，否则返回一个没有相机的标记</span></span><br><span class="line">        <span class="keyword">return</span> (left == HAS_CAMERA || right == HAS_CAMERA) ? NO_NEEDED : NO_CAMERA;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-comment">//NO_CAMERA表示的是子节点没有相机，当前节点也没放相机</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">NO_CAMERA</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//HAS_CAMERA表示当前节点有一个相机</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">HAS_CAMERA</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-comment">//NO_NEEDED表示当前节点没有相机，但他的子节点有一个相机，把它给</span><br>    <span class="hljs-comment">//覆盖了，所以它不需要了。或者他是一个空的节点也是不需要相机的</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">NO_NEEDED</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br><br>    <span class="hljs-comment">//全局的，统计有多少相机</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">minCameraCover</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        <span class="hljs-comment">//边界条件判断</span><br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//如果最后返回的是NO_CAMERA，表示root节点的子节点也没有相机，</span><br>        <span class="hljs-comment">//所以root节点要添加一个相机</span><br>        <span class="hljs-keyword">if</span> (dfs(root) == NO_CAMERA)<br>            res++;<br>        <span class="hljs-comment">//返回结果</span><br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">dfs</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        <span class="hljs-comment">//如果是空的，就不需要相机了</span><br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>)<br>            <span class="hljs-keyword">return</span> NO_NEEDED;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> dfs(root.left);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> dfs(root.right);<br>        <span class="hljs-comment">//如果左右子节点有一个是NO_CAMERA，表示的是子节点既没相机，也没相机覆盖它，</span><br>        <span class="hljs-comment">//所以当前节点需要有一个相机</span><br>        <span class="hljs-keyword">if</span> (left == NO_CAMERA || right == NO_CAMERA) &#123;<br>            <span class="hljs-comment">//在当前节点放一个相机，统计相机的个数</span><br>            res++;<br>            <span class="hljs-keyword">return</span> HAS_CAMERA;<br>        &#125;<br>        <span class="hljs-comment">//如果左右子节点只要有一个有相机，那么当前节点就不需要相机了，否则返回一个没有相机的标记</span><br>        <span class="hljs-keyword">return</span> (left == HAS_CAMERA || right == HAS_CAMERA) ? NO_NEEDED : NO_CAMERA;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="cpp代码">cpp代码</h2>
 <p>状态</p>
 <ul>
@@ -236,7 +243,7 @@
 <li>1：本节点有摄像头</li>
 <li>2：本节点有覆盖</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> result;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">traversal</span><span class="params">(TreeNode* cur)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 空节点，该节点有覆盖</span></span><br><span class="line">        <span class="keyword">if</span> (cur == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> left = <span class="built_in">traversal</span>(cur-&gt;left);    <span class="comment">// 左</span></span><br><span class="line">        <span class="type">int</span> right = <span class="built_in">traversal</span>(cur-&gt;right);  <span class="comment">// 右</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//先考虑左右节点，再考虑中间节点，所以采用后序遍历</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 情况1 - - - - - - 左右节点都有覆盖</span></span><br><span class="line">        <span class="comment">// 左右节点都有覆盖</span></span><br><span class="line">        <span class="keyword">if</span> (left == <span class="number">2</span> &amp;&amp; right == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 情况2 - - - - - - - - - - - -- - - - 左右节点至少有一个无覆盖的情况</span></span><br><span class="line">        <span class="comment">// left == 0 &amp;&amp; right == 0 左右节点无覆盖</span></span><br><span class="line">        <span class="comment">// left == 1 &amp;&amp; right == 0 左节点有摄像头，右节点无覆盖</span></span><br><span class="line">        <span class="comment">// left == 0 &amp;&amp; right == 1 左节点有无覆盖，右节点摄像头</span></span><br><span class="line">        <span class="comment">// left == 0 &amp;&amp; right == 2 左节点无覆盖，右节点覆盖</span></span><br><span class="line">        <span class="comment">// left == 2 &amp;&amp; right == 0 左节点覆盖，右节点无覆盖</span></span><br><span class="line">        <span class="keyword">if</span> (left == <span class="number">0</span> || right == <span class="number">0</span>) &#123;</span><br><span class="line">            result++;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 情况3 - - - - - - - - - - - - - - - - - - - - 左右节点至少有一个有摄像头</span></span><br><span class="line">        <span class="comment">// left == 1 &amp;&amp; right == 2 左节点有摄像头，右节点有覆盖</span></span><br><span class="line">        <span class="comment">// left == 2 &amp;&amp; right == 1 左节点有覆盖，右节点有摄像头</span></span><br><span class="line">        <span class="comment">// left == 1 &amp;&amp; right == 1 左右节点都有摄像头</span></span><br><span class="line">        <span class="comment">// 其他情况前段代码均已覆盖</span></span><br><span class="line">        <span class="keyword">if</span> (left == <span class="number">1</span> || right == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 以上代码我没有使用else，主要是为了把各个分支条件展现出来，这样代码有助于读者理解</span></span><br><span class="line">        <span class="comment">// 这个 return -1 逻辑不会走到这里。</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minCameraCover</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        result = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 情况4</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">traversal</span>(root) == <span class="number">0</span>) &#123; <span class="comment">// root 无覆盖</span></span><br><span class="line">            result++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> result;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">traversal</span><span class="hljs-params">(TreeNode* cur)</span> </span>&#123;<br><br>        <span class="hljs-comment">// 空节点，该节点有覆盖</span><br>        <span class="hljs-keyword">if</span> (cur == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br><br>        <span class="hljs-type">int</span> left = <span class="hljs-built_in">traversal</span>(cur-&gt;left);    <span class="hljs-comment">// 左</span><br>        <span class="hljs-type">int</span> right = <span class="hljs-built_in">traversal</span>(cur-&gt;right);  <span class="hljs-comment">// 右</span><br>        <br>        <span class="hljs-comment">//先考虑左右节点，再考虑中间节点，所以采用后序遍历</span><br><br>        <span class="hljs-comment">// 情况1 - - - - - - 左右节点都有覆盖</span><br>        <span class="hljs-comment">// 左右节点都有覆盖</span><br>        <span class="hljs-keyword">if</span> (left == <span class="hljs-number">2</span> &amp;&amp; right == <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>        <span class="hljs-comment">// 情况2 - - - - - - - - - - - -- - - - 左右节点至少有一个无覆盖的情况</span><br>        <span class="hljs-comment">// left == 0 &amp;&amp; right == 0 左右节点无覆盖</span><br>        <span class="hljs-comment">// left == 1 &amp;&amp; right == 0 左节点有摄像头，右节点无覆盖</span><br>        <span class="hljs-comment">// left == 0 &amp;&amp; right == 1 左节点有无覆盖，右节点摄像头</span><br>        <span class="hljs-comment">// left == 0 &amp;&amp; right == 2 左节点无覆盖，右节点覆盖</span><br>        <span class="hljs-comment">// left == 2 &amp;&amp; right == 0 左节点覆盖，右节点无覆盖</span><br>        <span class="hljs-keyword">if</span> (left == <span class="hljs-number">0</span> || right == <span class="hljs-number">0</span>) &#123;<br>            result++;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 情况3 - - - - - - - - - - - - - - - - - - - - 左右节点至少有一个有摄像头</span><br>        <span class="hljs-comment">// left == 1 &amp;&amp; right == 2 左节点有摄像头，右节点有覆盖</span><br>        <span class="hljs-comment">// left == 2 &amp;&amp; right == 1 左节点有覆盖，右节点有摄像头</span><br>        <span class="hljs-comment">// left == 1 &amp;&amp; right == 1 左右节点都有摄像头</span><br>        <span class="hljs-comment">// 其他情况前段代码均已覆盖</span><br>        <span class="hljs-keyword">if</span> (left == <span class="hljs-number">1</span> || right == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br><br>        <span class="hljs-comment">// 以上代码我没有使用else，主要是为了把各个分支条件展现出来，这样代码有助于读者理解</span><br>        <span class="hljs-comment">// 这个 return -1 逻辑不会走到这里。</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minCameraCover</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        result = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// 情况4</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">traversal</span>(root) == <span class="hljs-number">0</span>) &#123; <span class="hljs-comment">// root 无覆盖</span><br>            result++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h1>参考资料</h1>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-cameras/solution/jian-kong-er-cha-shu-by-leetcode-solution/">监控二叉树</a></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-cameras/solution/968-jian-kong-er-cha-shu-di-gui-shang-de-zhuang-ta/">968. 监控二叉树:【递归上的状态转移】详解</a></p>
@@ -295,7 +302,7 @@
 
 <footer class="footer">
   <div class="footer-social"><a 
-        href="tencent://message/?Menu=yes&uin=894519210 "
+        href="tencent://message/?Menu=yes&uin=123456 "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#12B7F5'" 
@@ -309,21 +316,21 @@
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconwechat-fill "></i>
       </a><a 
-        href="https://www.instagram.com/izhaoo/ "
+        href="https://www.instagram.com/WangWangZhou/ "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#DA2E76'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  iconinstagram "></i>
       </a><a 
-        href="https://github.com/zhaoo "
+        href="https://github.com/WangWangZhou "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color= '#9f7be1'" 
         onMouseOut="this.style.color='#33333D'">
           <i class="iconfont  icongithub-fill "></i>
       </a><a 
-        href="mailto:izhaoo@163.com "
+        href="mailto:mclauncher996@163.com "
         target="_blank"
         class="footer-social-item"
         onMouseOver="this.style.color=#FF3B00" 
@@ -338,6 +345,10 @@
       <div class="fab fab-plus">
     <i class="iconfont iconplus"></i>
   </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
   
   
   
@@ -385,6 +396,82 @@
 
 
 
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'nLMdFV0YjurM8Y8GcB1EThtf-gzGzoHsz',
+      appKey: '1EWJLdXWKkEYt0PGYijlzboS',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'https://fpga.vip';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'https://fpga.vip';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
 
 
 
@@ -405,9 +492,23 @@
 
 
 
+  <script defer src='https://hm.baidu.com/hm.js?f279a9b8769aff786de7464a603c8d8b'></script>
 
 
 
+  <script defer src='https://s9.cnzz.com/z_stat.php?id=1278069914&web_id=1278069914'></script>
+
+
+
+  <script>
+    window.ga = window.ga || function () {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    ga('create', 'UA-178467547-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script defer src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
